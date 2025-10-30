@@ -4,6 +4,8 @@ import { Home } from '@/pages/Home';
 import { Post } from '@/pages/Post';
 
 function App() {
+  // basename should match the base in vite.config.ts
+  // Change to "/" for custom domain or root deployment
   return (
     <BrowserRouter basename="/mcq-anki">
       <Routes>

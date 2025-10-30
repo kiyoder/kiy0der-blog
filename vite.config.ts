@@ -10,5 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Set base to your repository name for GitHub Pages deployment
+  // For custom domain or root deployment, change to '/'
   base: '/mcq-anki/',
 })
