@@ -12,5 +12,5 @@ export default defineConfig({
   },
   // Set base to your repository name for GitHub Pages deployment
   // For custom domain or root deployment, change to '/'
-  base: '/mcq-anki/',
+  base: '/kiy0der-blog/'
 })
