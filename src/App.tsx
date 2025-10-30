@@ -7,7 +7,7 @@ function App() {
   // basename should match the base in vite.config.ts
   // Change to "/" for custom domain or root deployment
   return (
-    <BrowserRouter basename="/mcq-anki">
+    <BrowserRouter basename="/kiy0der-blog">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
