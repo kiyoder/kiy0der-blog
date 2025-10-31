@@ -20,15 +20,29 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+const DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
+
 export function ThemeProvider({
   children,
   defaultTheme = 'light',
   storageKey = 'ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Check localStorage first
+    const stored = localStorage.getItem(storageKey);
+    if (stored === 'dark' || stored === 'light') {
+      return stored;
+    }
+    
+    // If no stored preference, check system preference
+    if (window.matchMedia && window.matchMedia(DARK_MODE_QUERY).matches) {
+      return 'dark';
+    }
+    
+    // Fall back to defaultTheme
+    return defaultTheme;
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -37,11 +51,31 @@ export function ThemeProvider({
     root.classList.add(theme);
   }, [theme]);
 
+  // Listen for system theme changes only if user hasn't set a preference
+  useEffect(() => {
+    // Check if matchMedia is supported
+    if (!window.matchMedia) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia(DARK_MODE_QUERY);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only update if there's no stored preference
+      if (!localStorage.getItem(storageKey)) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [storageKey]);
+
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
+    setTheme: (newTheme: Theme) => {
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme);
     },
   };
 
