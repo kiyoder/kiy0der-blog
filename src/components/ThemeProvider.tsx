@@ -26,9 +26,21 @@ export function ThemeProvider({
   storageKey = 'ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Check localStorage first
+    const stored = localStorage.getItem(storageKey) as Theme;
+    if (stored) {
+      return stored;
+    }
+    
+    // If no stored preference, check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    
+    // Fall back to defaultTheme
+    return defaultTheme;
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -36,6 +48,21 @@ export function ThemeProvider({
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
   }, [theme]);
+
+  // Listen for system theme changes only if user hasn't set a preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only update if there's no stored preference
+      if (!localStorage.getItem(storageKey)) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [storageKey]);
 
   const value = {
     theme,
