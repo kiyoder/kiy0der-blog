@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
-import { Home } from '@/pages/Home';
-import { Post } from '@/pages/Post';
+import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
+import { Post } from './pages/Post';
 
 function App() {
   // basename should match the base in vite.config.ts
