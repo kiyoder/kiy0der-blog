@@ -20,6 +20,8 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+const DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
+
 export function ThemeProvider({
   children,
   defaultTheme = 'light',
@@ -34,7 +36,7 @@ export function ThemeProvider({
     }
     
     // If no stored preference, check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window.matchMedia && window.matchMedia(DARK_MODE_QUERY).matches) {
       return 'dark';
     }
     
@@ -51,7 +53,12 @@ export function ThemeProvider({
 
   // Listen for system theme changes only if user hasn't set a preference
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    // Check if matchMedia is supported
+    if (!window.matchMedia) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia(DARK_MODE_QUERY);
     
     const handleChange = (e: MediaQueryListEvent) => {
       // Only update if there's no stored preference
