@@ -19,7 +19,8 @@ export interface BlogPostMeta {
 const postModules = import.meta.glob<string>('/src/posts/*.md', { query: '?raw', import: 'default', eager: true });
 
 function parseMarkdown(content: string): { frontmatter: any; content: string } {
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  // Support both LF and CRLF line endings in frontmatter blocks
+  const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
 
   if (!match) {
