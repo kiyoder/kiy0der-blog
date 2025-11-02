@@ -7,10 +7,10 @@ tags: ["anki", "mcq", "automation", "learning"]
 
 # Creating Multiple Choice Question Anki Cards
 
-Anki is a powerful spaced-repetition system, and building a **Multiple Choice Question (MCQ)** card type can make your learning both dynamic and cognitively engaging. This guide shows you how to design a custom **MCQ note type**, style it for clarity, and implement a script that **randomizes answer choices** each time a card appears — preventing subconscious pattern recognition and enhancing true recall.  
+Anki is a powerful spaced-repetition system, and building a **Multiple Choice Question (MCQ)** card type can make your learning both dynamic and cognitively engaging. This guide shows you how to design a custom **MCQ note type**, style it for clarity, and implement a script that **randomizes answer choices** each time a card appears — preventing subconscious pattern recognition and enhancing true recall.
 
 You’ll also learn how to use a **prompt-based workflow** to automatically generate MCQs from uploaded study materials, creating a seamless system that combines structured card design, intelligent question generation, and optimized retention.
-  
+
 
 ---
 
@@ -19,7 +19,7 @@ You’ll also learn how to use a **prompt-based workflow** to automatically gene
 ### Define the Fields
 
 In Anki, go to **Tools → Manage Note Types → Add → Clone: Basic (and reverse card) / [CTRL + SHIFT + N]**.  
-Then, rename it to something like **MCQ**.
+Then, rename it to **MCQ**.
 
 Add the following fields:
 
@@ -37,13 +37,15 @@ Add the following fields:
 
 This setup ensures flexibility for both visual and text-based MCQs.
 
+
 ---
 
-### Configure the Card Templates
 
-Go to **Cards…** and edit both the **Front** and **Back** templates.
+## 2. Configure the Card Templates
 
-#### Front Template
+Make sure you have selected **MCQ**, then on the right column select **Cards…** and edit the **Front**, **Back**, and **Styles** templates. Copy paste from the templates provided for each.
+
+### Front Template
 
 ```html
 <!-- QUESTION -->
@@ -101,7 +103,8 @@ Go to **Cards…** and edit both the **Front** and **Back** templates.
 
 ---
 
-#### Back Template
+
+### Back Template
 
 ```html
 <div class="question">{{question}}</div>
@@ -121,6 +124,7 @@ Go to **Cards…** and edit both the **Front** and **Back** templates.
 ```
 
 ---
+
 
 ### Style (CSS)
 
@@ -234,11 +238,11 @@ body.night, body.is-night, .card.night {
 
 ```
 
-✅ **Tested:** Works smoothly on **Windows** and **Android**.
+✅ **Tested:** **Windows** and **Android**, unsure with iOS and MacOS.
 
 ---
 
-## 2. The Prompt to Generate MCQs from a Resource
+## 3. The Prompt to Generate MCQs from a Resource
 
 Once your **note type** is set, you can automate question creation. Use the following **prompt** to generate well-balanced MCQs from any uploaded notes, PDFs, or text files.
 
