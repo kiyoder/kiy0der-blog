@@ -1,1 +1,102 @@
+/* Tailwind v4: import the full framework so base, components, and utilities are included */
 @import "tailwindcss";
+
+/* Theme CSS variables (RGB variants are used by Tailwind color mappings) */
+:root {
+  color-scheme: light;
+
+  /* light theme tokens (hex for fallback, rgb for Tailwind mapping) */
+  --background: #ffffff;
+  --background-rgb: 255 255 255;
+  --foreground: #0f172a;
+  --foreground-rgb: 15 23 42;
+
+  --muted: #f3f4f6;
+  --muted-rgb: 243 244 246;
+  --muted-foreground: #6b7280;
+  --muted-foreground-rgb: 107 114 128;
+
+  --card: #ffffff;
+  --card-rgb: 255 255 255;
+  --card-foreground: #0f172a;
+  --card-foreground-rgb: 15 23 42;
+
+  --primary: #2563eb;
+  --primary-rgb: 37 99 235;
+  --primary-foreground: #ffffff;
+  --primary-foreground-rgb: 255 255 255;
+
+  --secondary: #eef2ff;
+  --secondary-rgb: 238 242 255;
+  --secondary-foreground: #1e293b;
+  --secondary-foreground-rgb: 30 41 59;
+
+  --destructive: #ef4444;
+  --destructive-rgb: 239 68 68;
+  --destructive-foreground: #ffffff;
+  --destructive-foreground-rgb: 255 255 255;
+
+  --input: #ffffff;
+  --input-rgb: 255 255 255;
+
+  --accent: #f8fafc;
+  --accent-rgb: 248 250 252;
+  --accent-foreground: #0f172a;
+  --accent-foreground-rgb: 15 23 42;
+
+  --border: #e5e7eb;
+  --border-rgb: 229 231 235;
+
+  --ring: rgba(37, 99, 235, 0.4);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* dark theme tokens */
+  --background: #0b1220;
+  --background-rgb: 11 18 32;
+  --foreground: #e6eef8;
+  --foreground-rgb: 230 238 248;
+
+  --muted: #081022;
+  --muted-rgb: 8 16 34;
+  --muted-foreground: #94a3b8;
+  --muted-foreground-rgb: 148 163 184;
+
+  --card: #0f1724;
+  --card-rgb: 15 23 36;
+  --card-foreground: #e6eef8;
+  --card-foreground-rgb: 230 238 248;
+
+  --primary: #60a5fa;
+  --primary-rgb: 96 165 250;
+  --primary-foreground: #0b1220;
+  --primary-foreground-rgb: 11 18 32;
+
+  --secondary: #111827;
+  --secondary-rgb: 17 24 39;
+  --secondary-foreground: #cbd5e1;
+  --secondary-foreground-rgb: 203 213 225;
+
+  --destructive: #f87171;
+  --destructive-rgb: 248 113 113;
+  --destructive-foreground: #0b1220;
+  --destructive-foreground-rgb: 11 18 32;
+
+  --input: #0f1724;
+  --input-rgb: 15 23 36;
+
+  --accent: #061026;
+  --accent-rgb: 6 16 38;
+  --accent-foreground: #cbd5e1;
+  --accent-foreground-rgb: 203 213 225;
+
+  --border: #1f2937;
+  --border-rgb: 31 41 55;
+
+  --ring: rgba(96, 165, 250, 0.35);
+}
+
+/* Let Tailwind generate utility classes from the config. Avoid manually
+   defining `.bg-*`/`.text-*` utilities here to prevent conflicts. */
