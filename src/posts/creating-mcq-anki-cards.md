@@ -309,6 +309,26 @@ question,choice_a,choice_b,choice_c,choice_d,answer,explanation,image,tag
 
 Use this generated output to fill your **Anki fields** automatically or via AnkiConnect.
 
+
+---
+## 4. Importing Generated CSV File
+
+Once your multiple-choice questions have been generated and exported into a `.csv` file, you can easily import them into Anki.
+
+Follow these steps:
+
+1. On the top left of Anki, go to **File → Import**
+2. Locate and select your generated `.csv` file
+3. Set **Field separator** to **Comma ( , )**
+4. Choose your custom note type — **MCQ**
+5. Select the deck you want to add the cards to
+6. Review the **field mappings** carefully
+    - Ensure each CSV column (e.g., Question, Choice_A, Choice_B, etc.) correctly matches your Anki fields
+7. Click **Import** and verify that the cards display correctly with your randomized choice layout
+
+ **Tip:** If the cards appear misaligned or the wrong fields show up, revisit the **field mapping screen** during import — Anki sometimes defaults to alphabetical field order, which can shift your intended layout.
+
+
 ---
 
 ## Conclusion
